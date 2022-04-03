@@ -23,11 +23,15 @@ class ProductosApi {
     this.id++;
     prod.id = this.id;
     this.productos.push(prod);
+    return prod;
   }
 
   async actualizar(prod, id) {
     const objectIndex = this.productos.findIndex((x) => x.id === id);
+    prod.id = this.id;
     this.productos[objectIndex] = prod;
+
+    return this.productos[objectIndex];
   }
 
   async borrar(id) {
@@ -38,22 +42,3 @@ class ProductosApi {
 }
 
 module.exports = ProductosApi;
-
-// testProd = {
-//   name: 'raul',
-//   raza: 'humano',
-// };
-
-// const humans = new ProductosApi();
-
-// humans.guardar(testProd).then(() => {
-//   console.log(humans.productos);
-//   humans.borrar(1).then(console.log(humans.productos));
-// });
-// console.log(humans.productos);
-
-// const hola = await humans.guardar(testProd);
-
-// console.log(humans.productos);
-// await humans.borrar(1);
-// console.log(humans.productos);

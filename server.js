@@ -23,8 +23,21 @@ routerProductos.get('/:id', async (req, res) => {
   console.log(producto);
 });
 
-routerProductos.post('/', (req, res) => {
-  productosApi.guardar(req.body).then(console.log('Producto guardado'));
+routerProductos.post('/', async (req, res) => {
+  const produto = await productosApi.guardar(req.body);
+  res.json(produto);
+  console.log(`Producto guardado: `);
+  console.log(produto);
+});
+
+routerProductos.put('/:id', async (req, res) => {
+  const prodActualizado = await productosApi.actualizar(
+    req.body,
+    req.params.id
+  );
+  console.log(`Producto actualizado: `);
+  console.log(prodActualizado);
+  res.json(prodActualizado);
 });
 
 routerProductos.delete('/:id', (req, res) => {
