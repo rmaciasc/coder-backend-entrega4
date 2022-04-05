@@ -27,8 +27,9 @@ class ProductosApi {
   }
 
   async actualizar(prod, id) {
+    id = parseInt(id);
     const objectIndex = this.productos.findIndex((x) => x.id === id);
-    prod.id = this.id;
+    prod.id = id;
     this.productos[objectIndex] = prod;
 
     return this.productos[objectIndex];
